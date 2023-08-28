@@ -1,0 +1,24 @@
+root: true
+env: {
+  browser: true,
+  node: true,
+}
+parser: "vue-eslint-parser"
+parserOptions: {
+  parser: {
+    "js": "espree",
+    "ts": "@typescript-eslint/parser",
+    "<template>": "espree",l
+  },
+  sourceType: "module"
+}
+plugins: [ '@typescript-eslint' ]
+extends: [
+  'plugin:@typescript-eslint/recommended',
+  'plugin:nuxt/recommended',
+  'plugin:vue/vue3-recommended',
+  'plugin:prettier/recommended',
+]
+rules: {
+  'vue/script-setup-no-uses-vars': off
+}
