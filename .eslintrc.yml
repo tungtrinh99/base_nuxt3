@@ -17,8 +17,38 @@ extends: [
   'plugin:@typescript-eslint/recommended',
   'plugin:nuxt/recommended',
   'plugin:vue/vue3-recommended',
-  'plugin:prettier/recommended',
 ]
 rules: {
-  'vue/script-setup-no-uses-vars': off
+  'vue/script-setup-no-uses-vars': "off",
+  "vue/multi-word-component-names": "off",
+  "vue/html-quotes": [ "error", "double" ],
+  "semi": [ "error", "never" ],
+  "vue/require-explicit-emits": "error",
+  "vue/no-spaces-around-equal-signs-in-attribute": "off",
+  "vue/comma-dangle": "off",
+  "vue/prop-name-casing": [ "error", "camelCase" ],
+  "vue/require-prop-types": [ "error" ],
+  "vue/component-tags-order": [
+    "error",
+    {
+      order: [ [ "template", "script", "style" ] ]
+    }
+  ],
+  "vue/max-attributes-per-line": [ "error", {
+    "singleline": {
+      "max": 3
+    },
+    "multiline": {
+      "max": 1
+    }
+  } ],
+  "vue/html-self-closing": "off",
+  "no-useless-catch": "off",
+  "vue/component-name-in-template-casing": [
+    "error",
+    "PascalCase",
+    {
+      registeredComponentsOnly: true
+    }
+  ],
 }

@@ -735,7 +735,7 @@
     "which" "^3.0.1"
     "ws" "^8.13.0"
 
-"@nuxt/kit@^3.0.0", "@nuxt/kit@^3.6.5", "@nuxt/kit@^3.7.0", "@nuxt/kit@3.7.0":
+"@nuxt/kit@^3.0.0", "@nuxt/kit@^3.5.0", "@nuxt/kit@^3.6.5", "@nuxt/kit@^3.7.0", "@nuxt/kit@3.7.0":
   "integrity" "sha512-bsPRb2NTLHRacjyybhhA3pZFIqo2pxB6bcP4FQDuzlGzVTI5PtJzbfNpkmQC7q+LZt8K0pNlxKVGisDvZctk6w=="
   "resolved" "https://registry.npmjs.org/@nuxt/kit/-/kit-3.7.0.tgz"
   "version" "3.7.0"
@@ -888,6 +888,14 @@
     "@parcel/watcher-win32-arm64" "2.3.0"
     "@parcel/watcher-win32-ia32" "2.3.0"
     "@parcel/watcher-win32-x64" "2.3.0"
+
+"@pinia/nuxt@^0.4.11":
+  "integrity" "sha512-bhuNFngJpmBCdAqWguezNJ/oJFR7wvKieqiZrmmdmPR07XjsidAw8RLXHMZE9kUm32M9E6T057OBbG/22jERTg=="
+  "resolved" "https://registry.npmjs.org/@pinia/nuxt/-/nuxt-0.4.11.tgz"
+  "version" "0.4.11"
+  dependencies:
+    "@nuxt/kit" "^3.5.0"
+    "pinia" ">=2.1.0"
 
 "@pkgjs/parseargs@^0.11.0":
   "integrity" "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="
@@ -5816,7 +5824,7 @@
   "resolved" "https://registry.npmjs.org/pify/-/pify-3.0.0.tgz"
   "version" "3.0.0"
 
-"pinia@^2.1.6":
+"pinia@^2.1.6", "pinia@>=2.1.0":
   "integrity" "sha512-bIU6QuE5qZviMmct5XwCesXelb5VavdOWKWaB17ggk++NUwQWWbP5YnsONTk3b752QkW9sACiR81rorpeOMSvQ=="
   "resolved" "https://registry.npmjs.org/pinia/-/pinia-2.1.6.tgz"
   "version" "2.1.6"
