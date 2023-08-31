@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "test",
+      title: "Base Nuxt.js 3 TypeScript project",
       htmlAttrs: {
         lang: "ja",
       },
