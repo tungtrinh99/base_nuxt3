@@ -3,30 +3,27 @@
     HeaderLogo
     <div class="box-info">
       {{ user?.username }}
-      <img
-        class="user-avatar"
-        v-if="user?.avatarUrl"
-        :src="user?.avatarUrl"
-        alt=""
-      >
+      <img v-if="user?.avatarUrl" class="user-avatar" :src="user?.avatarUrl">
     </div>
-    <CButton
-      class-name="button-logout"
-      type="primary"
-      @on-click="logout"
-    >
-      Logout
-    </CButton>
+    <div class="box-button">
+      <CButton v-if="!user" class-name="button-logout" type="primary" @on-click="$router.push({path: '/login'})">
+        Login
+      </CButton>
+      <CButton v-else class-name="button-logout" type="danger" @on-click="logout">
+        Logout
+      </CButton>
+    </div>
   </div>
 </template>
 <script setup lang="ts">
 import CButton from "@/components/atoms/CButton.vue"
-import {useAuth} from "~/composables/useAuth"
-import {useAuthStore} from "@/stores/auth"
-import {storeToRefs} from "pinia"
+import { useAuth } from "~/composables/useAuth"
+import { useAuthStore } from "@/stores/auth"
+import { storeToRefs } from "pinia"
 
-const {useLogout} = useAuth()
-const {user} = storeToRefs(useAuthStore())
+const { useLogout } = useAuth()
+const authStore = useAuthStore()
+const {user} = storeToRefs(authStore)
 const logout = () => {
   useLogout()
 }
@@ -51,6 +48,12 @@ const logout = () => {
       border-radius: 50%;
       border: 1px solid #333333;
     }
+  }
+
+  .box-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 }
 </style>

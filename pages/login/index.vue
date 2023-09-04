@@ -20,7 +20,7 @@
       <el-input v-model="dynamicValidateForm.password"/>
     </el-form-item>
     <el-form-item>
-      <el-checkbox label="Keep" v-model="isSaveLogin"/>
+      <el-checkbox v-model="isSaveLogin" label="Keep"/>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm(formRef)">Submit</el-button>
@@ -31,7 +31,6 @@
 <script lang="ts" setup>
 import {reactive, ref} from "vue"
 import {useAuth} from "@/composables/useAuth"
-import {useAuthStore} from "~/stores/auth"
 import type {FormInstance, FormRules} from 'element-plus'
 
 interface RuleForm {
@@ -40,10 +39,6 @@ interface RuleForm {
 }
 
 const {useLogin} = useAuth()
-const {
-  setToken,
-  setUser
-} = useAuthStore()
 
 const formRef = ref<FormInstance>()
 const dynamicValidateForm = reactive<RuleForm>({
@@ -81,26 +76,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 
 const login = async () => {
   try {
-    const data = await useLogin(dynamicValidateForm)
-    if (data) {
-      let token
-      if (isSaveLogin.value) {
-        token = useCookie("token", {maxAge: 60 * 60 * 24 * 7, secure: true}) // 7 days
-      } else {
-        token = useCookie("token", {secure: true})
-      }
-      token.value = data.value.token
-      setToken(token.value)
-      const user = Object.assign({}, {
-        id: data.value.id,
-        username: data.value.username,
-        email: data.value.email,
-        firstName: data.value.firstName,
-        lastName: data.value.lastName,
-        avatarUrl: data.value.image
-      })
-      setUser(user)
-    }
+    await useLogin(dynamicValidateForm, isSaveLogin.value)
   } catch (e) {
     console.log(e)
   }

@@ -32,8 +32,6 @@ const props = withDefaults(
 
 const pageQuery = computed(() =>  Number(route.query?.page || 1))
 
-
-
 const page: Ref<number> = ref(1)
 
 const paginationLayout = computed(() => {

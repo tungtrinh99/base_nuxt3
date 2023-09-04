@@ -1,23 +1,20 @@
 <template>
   <el-button
-    @click="$emit('onClick')"
     :class="[
       'button',
       props.type === 'primary' ? 'btn-primary' :
-      props.type === 'success' ? 'btn-success' :
-      props.type === 'warning' ? 'btn-warning' :
       props.type === 'danger' ? 'btn-danger' :
-      props.type === 'info' ? 'btn-info' :
-      props.type === 'text' ? 'btn-text' : '',
+      props.type === 'default' ? 'btn-default' : '',
       props.className
      ]"
     :loading="props.loading"
+    @click="emit('onClick')"
   >
     <slot></slot>
   </el-button>
 </template>
 <script lang="ts" setup>
-import { defineProps, PropType, defineEmits } from 'vue'
+import { PropType } from 'vue'
 type ButtonType = 'primary' | 'danger' | 'default'
 
 const props = defineProps({
