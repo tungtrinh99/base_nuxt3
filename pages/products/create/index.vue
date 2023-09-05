@@ -16,13 +16,15 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue"
 import type { FormInstance, FormRules } from "element-plus"
-import { useProduct } from "@/composables/useProducts"
+import { useProduct } from "~/composables/useProducts"
 import { ElMessage } from "element-plus"
+import { useRouter } from "vue-router"
 
 interface RuleForm {
   title: string;
 }
 
+const router = useRouter()
 const { postProducts } = useProduct()
 const ruleFormRef = ref<FormInstance>()
 const rules = reactive<FormRules<RuleForm>>({
@@ -36,26 +38,27 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-        createProduct()
+      createProduct()
     } else {
       console.log('error submit!', fields)
     }
   })
 }
 
-//api 
+//api
 const createProduct = async () => {
-    try {
-        const body = {
-            title: data.title
-        }
-        const response = await postProducts(body)
-        if (response) {
-            ElMessage.success("Created product")
-        }
-    } catch(error) {
-        console.log(error)
+  try {
+    const body = {
+      title: data.title
     }
+    const response = await postProducts(body)
+    if (response) {
+      router.push({ name: "products" })
+      ElMessage.success("Created product")
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 </script>
 <style lang="scss" scoped></style>

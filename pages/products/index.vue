@@ -1,13 +1,16 @@
 <template>
   <el-card class="box-card">
-    <div v-for="item in data" :key="item" class="text item" @click="$router.push(`products/${item.id}`)">
-      {{ item.title }} <span style="color: red">{{ useNumberWithCommas(item.price) }}USD</span>
+    <div v-for="item in data" :key="item" class="text item">
+      <span @click="$router.push(`products/${item.id}`)">{{ item.title }} </span><span style="color: red">{{
+        useNumberWithCommas(item.price) }}USD</span>
+      <el-popconfirm title="Are you sure to delete this?">
+        <template #reference>
+          <el-button @click="removeProduct(item.id)">Delete</el-button>
+        </template>
+      </el-popconfirm>
     </div>
   </el-card>
-  <CButton
-    :type="'primary'"
-    @on-click="$router.push('products/create')"
-  >
+  <CButton :type="'primary'" @on-click="$router.push('products/create')">
     Add products
   </CButton>
   <CPagination :total="pagination.total" :limit="pagination.limit"></CPagination>
@@ -19,8 +22,9 @@ import { useRoute } from "vue-router"
 import { useNumberWithCommas } from "~/composables/useUtils"
 import CPagination from "~/components/atoms/CPagination.vue"
 import CButton from "~/components/atoms/CButton.vue"
+import { ElMessage } from "element-plus"
 
-const { getListProduct } = useProduct()
+const { getListProduct, deleteProducts } = useProduct()
 const route = useRoute()
 const data = ref<any[]>([])
 const pagination = reactive<{ limit: number; total: number }>({
@@ -29,12 +33,23 @@ const pagination = reactive<{ limit: number; total: number }>({
 })
 const currentPage = computed(() => Number(route.query.page ?? 1))
 watch(
-    route,
-    () => {
-        fetchData()
-    }
+  route,
+  () => {
+    fetchData()
+  }
 )
 //api
+const removeProduct = async (id: number) => {
+  try {
+    const response = await deleteProducts(id)
+    if (response) {
+      ElMessage.success("Delete success")
+      await fetchData()
+    }
+  } catch (e: any) {
+    console.log(e)
+  }
+}
 const fetchData = async () => {
   try {
     const response = await getListProduct({
@@ -59,10 +74,7 @@ fetchData()
 .item {
   padding: 18px 0;
   cursor: pointer;
-  &:hover {
-    color: blue;
-    opacity: 0.7;
-  }
+
 }
 
 .box-card {
