@@ -21,9 +21,7 @@ export default defineNuxtRouteMiddleware((to) => {
     } else {
       if (to.path == '/') {
         return navigateTo('/login')
-      } else return navigateTo({
-        path: `/login`
-      })
+      } else return navigateTo(`/login?redirect=${to.fullPath}`)
     }
   } else {
     const user = JSON.parse(localStorage.getItem("user") || "{}")

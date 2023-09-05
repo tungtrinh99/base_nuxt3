@@ -26,7 +26,7 @@ export const useAuth = () => {
         })
         localStorage.setItem("user", JSON.stringify(user))
         useAuthStore().setUser(user)
-        navigateTo("/")
+        return data
       }
     }
     catch (e) {

@@ -21,9 +21,6 @@ export default defineNuxtConfig({
         },
       ],
       link: [], //fontsize
-      style: [],
-      script: [],
-      noscript: [],
     },
   },
   modules: [
