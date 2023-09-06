@@ -1,6 +1,6 @@
 import { useCookie, useRuntimeConfig, type UseFetchOptions } from 'nuxt/app'
 
-export function useApi<T> (key: string, url: string, options: UseFetchOptions<T> = {}) {
+export function useApi<T>(key: string, url: string, options: UseFetchOptions<T> = {}) {
   const userAuth = useCookie('token')
   const config = useRuntimeConfig()
   const headers = {
@@ -14,8 +14,8 @@ export function useApi<T> (key: string, url: string, options: UseFetchOptions<T>
 
     // set user token if connected
     headers: userAuth.value
-      ? { ... headers, ... { Authorization: `Bearer ${userAuth.value}` }}
-      : {... headers},
+      ? { ...headers, ...{ Authorization: `Bearer ${userAuth.value}` } }
+      : { ...headers },
 
     onRequest({ request, options }) {
       // Set the request headers
@@ -32,27 +32,27 @@ export function useApi<T> (key: string, url: string, options: UseFetchOptions<T>
     },
   }
 
-  const params = { ...defaults, ...options}
+  const params = { ...defaults, ...options }
 
   return useFetch(url, params)
 }
 
-export function useHttpGet<T> (key: string, url: string, options: UseFetchOptions<T> = {}) {
+export function useHttpGet<T>(key: string, url: string, options: UseFetchOptions<T> = {}) {
   const params = { ...options, method: 'GET' }
   return useApi(key, url, params)
 }
 
-export function useHttpPost<T> (key: string, url: string, options: UseFetchOptions<T> = {}) {
+export function useHttpPost<T>(key: string, url: string, options: UseFetchOptions<T> = {}) {
   const params = { ...options, method: 'POST' }
   return useApi(key, url, params)
 }
 
-export function useHttpPut<T> (key: string, url: string, options: UseFetchOptions<T> = {}) {
+export function useHttpPut<T>(key: string, url: string, options: UseFetchOptions<T> = {}) {
   const params = { ...options, method: 'PUT' }
   return useApi(key, url, params)
 }
 
-export function useHttpDelete<T> (key: string, url: string, options: UseFetchOptions<T> = {}) {
+export function useHttpDelete<T>(key: string, url: string, options: UseFetchOptions<T> = {}) {
   const params = { ...options, method: 'DELETE' }
   return useApi(key, url, params)
 }

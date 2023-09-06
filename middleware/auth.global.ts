@@ -8,25 +8,25 @@ const publicPaths = [
   '/reset-password'
 ]
 
-const setUser = (newUser: any) => {
+const setUserInStore = (newUser: any) => {
   useAuthStore().setUser(newUser)
 }
 
 export default defineNuxtRouteMiddleware((to) => {
   const hasToken = useCookie("token")
 
-  if (!hasToken.value) {
-    if (publicPaths.includes(to.path)) {
+  if (!hasToken?.value) {
+    if (publicPaths.includes(to?.path)) {
       return
     } else {
-      if (to.path == '/') {
+      if (to?.path == '/') {
         return navigateTo('/login')
-      } else return navigateTo(`/login?redirect=${to.fullPath}`)
+      } else return navigateTo(`/login?redirect=${to?.fullPath}`)
     }
   } else {
     const user = JSON.parse(localStorage.getItem("user") || "{}")
-    setUser(user)
-    if (to.path == '/login') {
+    setUserInStore(user)
+    if (to?.path == '/login') {
       return navigateTo('/')
     }
     return

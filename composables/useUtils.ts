@@ -1,25 +1,20 @@
 import moment from "moment"
 
-export const useQueryToString = (query: any = {}) => {
-    let q = ""
-    for (const key in query) {
-        if (q == "") {
-            q = `?${key}=${query[key]}`
-        } else {
-            q += `&${key}=${query[key]}`
-        }
-    }
-    return q
+export const useQueryToString = (query: Record<string, any> = {}): string => {
+  const queryString = Object.entries(query)
+  .map(([key, value]) => `${key}=${value}`)
+  .join("&")
+
+  return queryString ? `?${queryString}` : ""
 }
 
 export const useFormattedDate = (date: string | undefined, format = "YYYY-MM-DD HH:mm"): string => {
-    return moment(date).format(format)
+  return date ? moment(date).format(format) : ""
 }
 
-export const useNumberWithCommas = (number: number) => {
-    if (number) {
-        return number.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ".")
-    } else {
-        return "0"
-    }
+export const useNumberWithCommas = (number: number | undefined): string => {
+  if (number !== undefined) {
+    return number.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ".")
+  }
+  return "0"
 }

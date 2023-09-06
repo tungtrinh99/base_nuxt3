@@ -8,7 +8,7 @@ parserOptions: {
   parser: {
     "js": "espree",
     "ts": "@typescript-eslint/parser",
-    "<template>": "espree",l
+    "<template>": "espree",
   },
   sourceType: "module"
 }
