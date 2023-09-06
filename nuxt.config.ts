@@ -44,6 +44,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       NUXT_APP_I18N_LOCALE: process.env.NUXT_APP_I18N_LOCALE,
+      NUXT_APP_I18N_FALLBACK_LOCALE: process.env.NUXT_APP_I18N_FALLBACK_LOCALE,
       baseURL: process.env.NUXT_API_URL,
     },
   },
