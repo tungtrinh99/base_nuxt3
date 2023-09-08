@@ -1,16 +1,11 @@
 <template>
-  <a
-    :class="['link', props.className]"
-    :href="props.url"
-    :target="props.target"
-    @click="$emit('onClick')"
-  >
+  <a :class="['link', props.className]" :href="props.url" :target="props.target" @click="$emit('onClick')">
     <span v-if="props.title">{{ props.title }}</span>
     <slot></slot>
   </a>
 </template>
 <script lang="ts" setup>
-import { defineProps, PropType, defineEmits  } from "vue";
+import { PropType } from "vue";
 
 type Target = "_blank" | "_self" | "_parent" | "_top";
 const props = defineProps({

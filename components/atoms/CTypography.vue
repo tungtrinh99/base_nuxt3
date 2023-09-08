@@ -1,15 +1,9 @@
 <template>
-  <component
-    :is="props.tag"
-    :class="['typography', props.textClass]"
-    :style="props.textStyle"
-    @click="$emit('onClick')"
-  >
+  <component :is="props.tag" :class="['typography', props.textClass]" :style="props.textStyle" @click="$emit('onClick')">
     <slot></slot>
   </component>
 </template>
 <script lang="ts" setup>
-import { defineProps, defineEmits } from "vue"
 const props = defineProps({
   tag: {
     type: String,

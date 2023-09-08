@@ -1,18 +1,16 @@
 <template>
-  <el-tag
-    :class="[
-      'tag',
-      props.type === 'success' ? 'tag-success' :
+  <el-tag :class="[
+    'tag',
+    props.type === 'success' ? 'tag-success' :
       props.type === 'danger' ? 'tag-danger' :
-      props.type === 'default' ? 'tag-default' : '',
-      props.className
-    ]"
-  >
+        props.type === 'default' ? 'tag-default' : '',
+    props.className
+  ]">
     {{ props.title }}
   </el-tag>
 </template>
 <script lang="ts" setup>
-import { defineProps, PropType } from 'vue'
+import { PropType } from 'vue'
 type TagType = 'success' | 'danger' | 'default'
 const props = defineProps({
   title: {

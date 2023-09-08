@@ -1,20 +1,12 @@
 <template>
   <label class="label" :for="props.elementId">{{ props.label }}</label>
-  <el-input
-    :id="props.elementId"
-    :placeholder="props.placeHolder"
-    :class="[
-      'input',
-      props.className
-    ]"
-    :disabled="props.disabled"
-    :type="props.type"
-    @input="updateValue"
-    v-model="input"
-  />
+  <el-input :id="props.elementId" :placeholder="props.placeHolder" :class="[
+    'input',
+    props.className
+  ]" :disabled="props.disabled" :type="props.type" @input="updateValue" v-model="input" />
 </template>
 <script lang="ts" setup>
-import { defineProps, ref, Ref, defineEmits } from 'vue'
+import { ref, Ref } from 'vue'
 const props = defineProps({
   placeHolder: {
     type: String,
@@ -55,6 +47,7 @@ const updateValue = () => {
   height: 60px;
   border-radius: 5px;
   border: 1px solid #B5B5B5;
+
   &::placeholder {
     color: #C9C9C9;
     font-size: 14px;

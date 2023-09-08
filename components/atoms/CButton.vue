@@ -1,15 +1,11 @@
 <template>
-  <el-button
-    :class="[
-      'button',
-      props.type === 'primary' ? 'btn-primary' :
+  <el-button :class="[
+    'button',
+    props.type === 'primary' ? 'btn-primary' :
       props.type === 'danger' ? 'btn-danger' :
-      props.type === 'default' ? 'btn-default' : '',
-      props.className
-     ]"
-    :loading="props.loading"
-    @click="emit('onClick')"
-  >
+        props.type === 'default' ? 'btn-default' : '',
+    props.className
+  ]" :loading="props.loading" @click="emit('onClick')">
     <slot></slot>
   </el-button>
 </template>
@@ -32,7 +28,7 @@ const props = defineProps({
     default: false
   }
 })
-const emit  = defineEmits(['onClick'])
+const emit = defineEmits(['onClick'])
 
 </script>
 <style lang="scss" scoped>

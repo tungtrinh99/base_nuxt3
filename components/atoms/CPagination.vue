@@ -1,16 +1,7 @@
 <template>
   <div class="pagination">
-    <el-pagination
-      :current-page="page"
-      small
-      background
-      :total="props.total"
-      :page-size="props.limit"
-      :pager-count="4"
-      class="mt-4"
-      :layout="paginationLayout"
-      @current-change="paginateHandler"
-    />
+    <el-pagination :current-page="page" small background :total="props.total" :page-size="props.limit" :pager-count="4"
+      class="mt-4" :layout="paginationLayout" @current-change="paginateHandler" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -30,7 +21,7 @@ const props = withDefaults(
   }
 )
 
-const pageQuery = computed(() =>  Number(route.query?.page || 1))
+const pageQuery = computed(() => Number(route.query?.page || 1))
 
 const page: Ref<number> = ref(1)
 

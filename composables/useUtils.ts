@@ -2,8 +2,8 @@ import moment from "moment"
 
 export const useQueryToString = (query: Record<string, any> = {}): string => {
   const queryString = Object.entries(query)
-  .map(([key, value]) => `${key}=${value}`)
-  .join("&")
+    .map(([key, value]) => `${key}=${value}`)
+    .join("&")
 
   return queryString ? `?${queryString}` : ""
 }

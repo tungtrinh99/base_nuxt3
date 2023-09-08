@@ -1,15 +1,10 @@
 <template>
-  <img
-    :src="props.src"
-    :alt="props.alt"
-    :class="[
-      'image',
-      props.className
-    ]"
-  >
+  <img :src="props.src" :alt="props.alt" :class="[
+    'image',
+    props.className
+  ]">
 </template>
 <script lang="ts" setup>
-import {defineProps} from 'vue'
 const props = defineProps({
   src: {
     type: String,

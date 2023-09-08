@@ -6,17 +6,17 @@ import { navigateTo, useCookie } from "nuxt/app"
 export const useAuth = () => {
   const useLogin = async (body: any, isSaveLogin?: boolean) => {
     try {
-      const data = (await useLoginApi(body))?.data
+      const data: any = (await useLoginApi(body))?.data
       if (data) {
         const token = useCookie("token", isSaveLogin ? { maxAge: 60 * 60 * 24 * 7, secure: true } : { secure: true })
-        token.value = data.value.token
+        token.value = data.value?.token
         const user = {
-          id: data.value.id,
-          username: data.value.username,
-          email: data.value.email,
-          firstName: data.value.firstName,
-          lastName: data.value.lastName,
-          avatarUrl: data.value.image,
+          id: data.value?.id,
+          username: data.value?.username,
+          email: data.value?.email,
+          firstName: data.value?.firstName,
+          lastName: data.value?.lastName,
+          avatarUrl: data.value?.image,
         }
         localStorage.setItem("user", JSON.stringify(user))
         useAuthStore().setUser(user)
@@ -44,6 +44,6 @@ export const useAuth = () => {
 
   return {
     useLogin,
-    useLogout
+    useLogout,
   }
 }

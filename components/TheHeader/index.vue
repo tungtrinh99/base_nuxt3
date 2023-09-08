@@ -6,7 +6,7 @@
       <img v-if="user?.avatarUrl" class="user-avatar" :src="user?.avatarUrl">
     </div>
     <div class="box-button">
-      <CButton v-if="!user" class-name="button-logout" type="primary" @on-click="$router.push({path: '/login'})">
+      <CButton v-if="!user" class-name="button-logout" type="primary" @on-click="$router.push({ path: '/login' })">
         Login
       </CButton>
       <CButton v-else class-name="button-logout" type="danger" @on-click="logout">
@@ -23,7 +23,7 @@ import { storeToRefs } from "pinia"
 
 const { useLogout } = useAuth()
 const authStore = useAuthStore()
-const {user} = storeToRefs(authStore)
+const { user } = storeToRefs(authStore)
 const logout = () => {
   useLogout()
 }

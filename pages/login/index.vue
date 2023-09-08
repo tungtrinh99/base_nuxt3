@@ -1,22 +1,9 @@
 <template>
-  <el-form
-    ref="formRef"
-    :model="dynamicValidateForm"
-    label-width="120px"
-    class="login-form"
-    :rules="rules"
-  >
-    <el-form-item
-      prop="username"
-      label="Username"
-    >
+  <el-form ref="formRef" :model="dynamicValidateForm" label-width="120px" class="login-form" :rules="rules">
+    <el-form-item prop="username" label="Username">
       <el-input v-model="dynamicValidateForm.username" />
     </el-form-item>
-    <el-form-item
-      prop="password"
-      label="Password"
-      type="password"
-    >
+    <el-form-item prop="password" label="Password" type="password">
       <el-input v-model="dynamicValidateForm.password" />
     </el-form-item>
     <el-form-item>
@@ -31,9 +18,9 @@
 </template>
 
 <script lang="ts" setup>
-import {reactive, ref, Ref, watch} from "vue"
-import {useAuth} from "@/composables/useAuth"
-import type {FormInstance, FormRules} from 'element-plus'
+import { reactive, ref, Ref, watch } from "vue"
+import { useAuth } from "@/composables/useAuth"
+import type { FormInstance, FormRules } from 'element-plus'
 import { useRouter, useRoute } from "vue-router"
 
 interface RuleForm {
@@ -41,7 +28,7 @@ interface RuleForm {
   password: string
 }
 
-const {useLogin} = useAuth()
+const { useLogin } = useAuth()
 const router = useRouter()
 const route = useRoute()
 const redirect: Ref<string> = ref("")
