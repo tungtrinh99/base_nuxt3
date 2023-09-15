@@ -4,15 +4,15 @@ import en from "@/locales/en.json"
 
 export default defineNuxtPlugin(({ vueApp }) => {
   const env = useRuntimeConfig()
-  const locale = localStorage.getItem("locale") || env.public.NUXT_APP_I18N_LOCALE || "ja" 
+  const locale = localStorage.getItem("locale") || env.public.NUXT_APP_I18N_LOCALE || "ja"
 
   const i18n = createI18n({
     locale,
-    fallbackLocale: env.public.NUXT_APP_I18N_FALLBACK_LOCALE || "ja", 
+    fallbackLocale: env.public.NUXT_APP_I18N_FALLBACK_LOCALE || "ja",
     messages: {
       ja,
-      en
-    }
+      en,
+    },
   })
 
   vueApp.use(i18n)

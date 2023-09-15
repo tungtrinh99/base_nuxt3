@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // devtools: { enabled: true },
+  modules: ["@nuxtjs/apollo"],
   typescript: {
     strict: true,
   },
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       link: [], //fontsize
     },
   },
-  modules: ["@element-plus/nuxt", "@pinia/nuxt"],
+  modules: ["@pinia/nuxt"],
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
@@ -46,6 +46,18 @@ export default defineNuxtConfig({
         protocol: "ws",
         host: "localhost",
         port: 24678,
+      },
+    },
+  },
+  apollo: {
+    autoImports: true,
+    authType: "Bearer",
+    authHeader: "Authorization",
+    tokenStorage: "cookie",
+    proxyCookies: true,
+    clients: {
+      default: {
+        httpEndpoint: process.env.NUXT_API_URL || "",
       },
     },
   },
