@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/apollo"],
   typescript: {
     strict: true,
   },
@@ -20,9 +19,10 @@ export default defineNuxtConfig({
         },
       ],
       link: [], //fontsize
+      script: [],
     },
   },
-  modules: ["@pinia/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxtjs/apollo"],
   pinia: {
     autoImports: [
       // automatically imports `defineStore`
@@ -30,14 +30,25 @@ export default defineNuxtConfig({
       ["defineStore", "definePiniaStore"], // import { defineStore as definePiniaStore } from 'pinia'
     ],
   },
-  plugins: ["@/plugins/i18n"],
+  plugins: ["@/plugins/i18n", "@/plugins/apollo", "@/plugins/vuelidate"],
   ssr: false,
-  css: ["@/assets/scss/index.scss"],
+  css: [
+    "@fortawesome/fontawesome-svg-core/styles.css",
+    "admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
+    "admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+    "admin-lte/plugins/jqvmap/jqvmap.min.css",
+    "admin-lte/dist/css/adminlte.min.css",
+    "admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+    "admin-lte/plugins/daterangepicker/daterangepicker.css",
+    "admin-lte/plugins/summernote/summernote-bs4.css",
+    "@/assets/scss/index.scss",
+  ],
   runtimeConfig: {
     public: {
       NUXT_APP_I18N_LOCALE: process.env.NUXT_APP_I18N_LOCALE,
       NUXT_APP_I18N_FALLBACK_LOCALE: process.env.NUXT_APP_I18N_FALLBACK_LOCALE,
-      baseURL: process.env.NUXT_API_URL,
+      NUXT_API_URL: process.env.NUXT_API_URL,
+      NUXT_TOKEN_KEY: process.env.NUXT_TOKEN_KEY,
     },
   },
   vite: {

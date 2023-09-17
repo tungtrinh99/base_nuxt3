@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/apollo": "^5.0.0-alpha.6",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
     "@vue/eslint-config-standard": "^8.0.1",
@@ -26,9 +27,14 @@
     "vue-i18n": "^9.2.2"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.3",
+    "@apollo/client": "^3.5.6",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@pinia/nuxt": "^0.4.11",
-    "@vue/apollo-composable": "^4.0.0-beta.11",
+    "@vue/apollo-composable": "^4.0.0-alpha.16",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
     "admin-lte": "^3.2.0",
     "apollo-upload-client": "^17.0.0",
     "moment": "^2.29.4",

@@ -1,5 +1,6 @@
-import { defineNuxtRouteMiddleware, navigateTo, useCookie } from "nuxt/app"
+import { defineNuxtRouteMiddleware, navigateTo } from "nuxt/app"
 import { useAuthStore } from "@/stores/auth"
+import { getToken } from "~/composables/useUtils"
 
 const publicPaths = ["/login", "/register", "/forgot-password", "/reset-password"]
 
@@ -8,8 +9,7 @@ const setUserInStore = (newUser: any) => {
 }
 
 export default defineNuxtRouteMiddleware((to) => {
-  const hasToken = useCookie("token")
-
+  const hasToken = getToken()
   if (!hasToken?.value) {
     if (publicPaths.includes(to?.path)) {
       return

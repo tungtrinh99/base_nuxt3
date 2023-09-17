@@ -1,20 +1,21 @@
-import moment from "moment"
+import { useCookie } from "nuxt/app"
 
-export const useQueryToString = (query: Record<string, any> = {}): string => {
-  const queryString = Object.entries(query)
-    .map(([key, value]) => `${key}=${value}`)
-    .join("&")
-
-  return queryString ? `?${queryString}` : ""
+export const NUXT_TOKEN_KEY = "x-renchan-app-access-token"
+export function getToken() {
+  return useCookie(NUXT_TOKEN_KEY)
 }
 
-export const useFormattedDate = (date: string | undefined, format = "YYYY-MM-DD HH:mm"): string => {
-  return date ? moment(date).format(format) : ""
+export function setToken(token: string) {
+  const cookie = useCookie(NUXT_TOKEN_KEY)
+  cookie.value = token
 }
 
-export const useNumberWithCommas = (number: number | undefined): string => {
-  if (number !== undefined) {
-    return number.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ".")
-  }
-  return "0"
+export function setTokenExpires(token: string) {
+  const cookie = useCookie(NUXT_TOKEN_KEY, { secure: true, maxAge: 60 * 60 * 24 * 30 })
+  cookie.value = token
+}
+
+export function removeToken() {
+  const cookie = useCookie(NUXT_TOKEN_KEY)
+  cookie.value = ""
 }

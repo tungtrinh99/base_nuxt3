@@ -1,49 +1,29 @@
-import { useLoginApi } from "~/apis/user"
-import { useAuthStore } from "~/stores/auth"
-import { ElMessage } from "element-plus"
-import { navigateTo, useCookie } from "nuxt/app"
+import { mutationSignIn } from "~/graphql/mutation"
+import { SignInInput } from "~/types/user"
+import { setToken, setTokenExpires, removeToken } from "~/composables/useUtils"
 
 export const useAuth = () => {
-  const useLogin = async (body: any, isSaveLogin?: boolean) => {
+  const signIn = async (request: SignInInput, saveLogin?: boolean) => {
+    const { mutate } = useMutation(mutationSignIn, {
+      variables: { input: request },
+    })
     try {
-      const data: any = (await useLoginApi(body))?.data
+      const { data } = await mutate()
       if (data) {
-        const token = useCookie("token", isSaveLogin ? { maxAge: 60 * 60 * 24 * 7, secure: true } : { secure: true })
-        token.value = data.value?.token
-        const user = {
-          id: data.value?.id,
-          username: data.value?.username,
-          email: data.value?.email,
-          firstName: data.value?.firstName,
-          lastName: data.value?.lastName,
-          avatarUrl: data.value?.image,
-        }
-        localStorage.setItem("user", JSON.stringify(user))
-        useAuthStore().setUser(user)
+        const token = data?.signIn?.accessToken
+        saveLogin ? setTokenExpires(token) : setToken(token)
         return data
       }
-    } catch (e) {
-      console.error(e)
-      throw new Error("Login failed")
+    } catch (error: any) {
+      console.log(error)
+      throw new Error(error)
     }
   }
 
-  const useLogout = async () => {
-    try {
-      const token = useCookie("token")
-      token.value = null
-      useAuthStore().resetState()
-      localStorage.removeItem("user")
-      navigateTo("/login")
-      ElMessage.success("Logout success")
-    } catch (e) {
-      console.error(e)
-      throw new Error("Logout failed")
-    }
+  const logout = () => {
+    setAdmin(null)
+    removeToken()
   }
 
-  return {
-    useLogin,
-    useLogout,
-  }
+  return { signIn, logout }
 }
