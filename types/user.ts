@@ -3,6 +3,10 @@ export interface SignInInput {
   password: string
 }
 
+export interface SignUpResult {
+  accessToken: string
+}
+
 export interface Admin {
   id: number
   username: string

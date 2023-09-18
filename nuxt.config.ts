@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Base Nuxt.js 3 TypeScript project",
+      title: "Base Nuxt.js Apollo AdminLTE3",
       htmlAttrs: {
         lang: "ja",
       },
@@ -34,14 +34,8 @@ export default defineNuxtConfig({
   ssr: false,
   css: [
     "@fortawesome/fontawesome-svg-core/styles.css",
-    "admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
-    "admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
-    "admin-lte/plugins/jqvmap/jqvmap.min.css",
     "admin-lte/dist/css/adminlte.min.css",
-    "admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
-    "admin-lte/plugins/daterangepicker/daterangepicker.css",
-    "admin-lte/plugins/summernote/summernote-bs4.css",
-    "@/assets/scss/index.scss",
+    "@/assets/scss/main.scss",
   ],
   runtimeConfig: {
     public: {
@@ -56,7 +50,6 @@ export default defineNuxtConfig({
       hmr: {
         protocol: "ws",
         host: "localhost",
-        port: 24678,
       },
     },
   },
@@ -71,5 +64,5 @@ export default defineNuxtConfig({
         httpEndpoint: process.env.NUXT_API_URL || "",
       },
     },
-  },
+  }
 })

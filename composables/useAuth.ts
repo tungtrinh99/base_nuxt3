@@ -21,7 +21,6 @@ export const useAuth = () => {
   }
 
   const logout = () => {
-    setAdmin(null)
     removeToken()
   }
 
